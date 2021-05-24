@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    /* CSS HSL */
+    --red-salsa: hsla(359, 94%, 62%, 1);
+    --orange-red: hsla(21, 89%, 56%, 1);
+    --yellow-orange-color-wheel: hsla(33, 94%, 55%, 1);
+    --maize-crayola: hsla(42, 93%, 64%, 1);
+    --pistachio: hsla(94, 38%, 59%, 1);
+    --zomp: hsla(162, 43%, 46%, 1);
+    --queen-blue: hsla(208, 25%, 45%, 1);
+    --pistachio-high-sat: hsla(94, 64%, 59%, 1);
+    --White: #ffffff;
+
+}
+
+/*
+    1px = 0.0625rem
+    2px = 0.125rem
+    5px = 0.3125rem
+    10px = 0.625rem
+    15px = 0.9375rem
+    20px = 1.25rem
+    40px = 2.5rem
+    80px = 5rem
+
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #091921;
+    overflow: hidden;
+}
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#e91e63a6, #ffc107);
+    clip-path: circle(22% at 30% 20%);
+    animation: animateright 25s ease-in infinite;
+}
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#ffffff, #da00ff);
+    clip-path: circle(20% at 70% 90%);
+    animation: animateleft 20s ease-in infinite;
+}
+@keyframes animateleft {
+    0% {
+        transform: translate(100px);
+    }
+    50% {
+        transform: translate(-100px);
+    }
+    100% {
+        transform: translate(100px);
+    }
+}
+@keyframes animateright {
+    0% {
+        transform: translate(-100px);
+    }
+    50% {
+        transform: translate(100px);
+    }
+    100% {
+        transform: translate(-100px);
+    }
+}
+.wrapper {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 6px;
+    overflow: hidden;
+    z-index: 10;
+    backdrop-filter: blur(15px);
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+    border-left: 1px solid rgba(255, 255, 255, 0.02);
+    box-shadow: 5px 5px 30px rgba(0,0,0,0.2);
+}
+.error-container,
+.encryptor, 
+.decryptor {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+input,
+button {
+    background: #fff;
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    transition: 200ms;
+    box-shadow: 0 0 10px #333;
+    border-radius: 2px;
+}
+button {
+    cursor: pointer;
+    background: var(--zomp);
+}
+input:focus {
+    border: 2px solid var(--zomp);
+    box-shadow: 0 0 10px var(--zomp);
+    color: #000;
+}
+button:focus {
+    border: 2px solid var(--zomp);
+    color: #fff;
+}
+button:hover {
+    background: #3337;
+    /* color: var(--zomp); */
+    color: #fff;
+    border: 2px solid var(--zomp);
+    box-shadow: 0 0 20px var(--white);
+}
+#enc-btn {
+    margin-bottom: 35px;
+}
+.error {
+    margin: 10px 10px 30px 10px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    transition: 200ms;
+    background: #09192173;
+    color: var(--White);
+    border: 2px solid var(--White);
+    text-align: center;
+    cursor: pointer;
+}
+.warning {
+    border: 2px solid var(--red-salsa);
+    color: var(--red-salsa);
+}
+.success {
+    border: 2px solid var(--pistachio-high-sat);
+    color: var(--pistachio-high-sat);
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+.fa {
+    position: absolute;
+    height: 60%;
+    width: 50px;
+    top: 50%;
+    right: -40px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 20px;
+    line-height: 40px;
+    color: #333;
+    background: #fff;
+    border-radius: 2px;
+    transition: 200ms;
+    opacity: 0;
+    cursor: pointer;
+}
+.fa:hover {
+    color: var(--zomp);
+}
+.field:hover .fa-files-o,
+.field:hover .fa-eye,
+.field:hover .fa-eye-slash {
+    right: -14px;
+    opacity: 1;
+}
+.field:hover .fa-trash {
+    right: 33px;
+    opacity: 1;
+    transition-delay: 200ms;
+}
+.secret-pwd {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+.tilt-switch {
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    margin-top: 10px;
+    cursor: pointer;
+    line-height: 0.9rem;
+}
+.tilt-switch p {
+    transition: 200ms;
+}
+.tilt-switch p span {
+    font-size: 10px;
+}
+.tilt-switch p:hover {
+    color: var(--zomp);
+}
+
+/* For Mobile Devices */
+@media all and (max-width: 720px) {
+    
+    .wrapper {
+        padding: 15px;
+    }
+    .error-container,
+    .encryptor, 
+    .decryptor {
+        width: 250px;
+    }
+
+    input,
+    button {
+        margin: 5px 0;
+        padding: 5px;
+        font-size: 10px;
+    }
+    #enc-btn {
+        margin-bottom: 15px;
+    }
+    .error {
+        margin: 5px 5px 15px 5px;
+        padding: 5px;
+        font-size: 10px;
+    }
+    .fa {
+        font-size: 10px;
+        width: 25px;
+        line-height: 22px;
+    }
+    .field:hover .fa-files-o,
+    .field:hover .fa-eye,
+    .field:hover .fa-eye-slash {
+        right: -10px;
+    }
+    .field:hover .fa-trash {
+        right: 14px;
+    }
+    .tilt-switch {
+        font-size: 9px;
+        margin-top: 5px;
+        line-height: 0.5rem;
+    }
+    .tilt-switch p span {
+        font-size: 5px;
+    }body::before {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(#e91e63a6, #ffc107);
+        clip-path: circle(15% at 40% 30%);
+        animation: animateright 25s ease-in infinite;
+    }
+    body::after {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(#ffffff, #da00ff);
+        clip-path: circle(10% at 60% 75%);
+        animation: animateleft 20s ease-in infinite;
+    }
+    @keyframes animateleft {
+        0% {
+            transform: translate(50px);
+        }
+        50% {
+            transform: translate(-20px);
+        }
+        100% {
+            transform: translate(50px);
+        }
+    }
+    @keyframes animateright {
+        0% {
+            transform: translate(-50px);
+        }
+        50% {
+            transform: translate(50px);
+        }
+        100% {
+            transform: translate(-50px);
+        }
+    }
+}

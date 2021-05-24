@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <title>Encryptor and Decryptor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+	<div class="secret-pwd"></div>
+    <div class="wrapper">   
+        
+        <div class="error-container">
+            <p class="error">Fury Phoenix</p>
+        </div>
+
+        <!-- <hr><br> -->
+
+        <div class="encryptor">
+            <div class="field">
+                <input type="text" id="enc-text" placeholder="Enter text to encrypt">
+                <i class="fa fa-files-o" aria-hidden="true" id="enc-copy"></i>
+                <i class="fa fa-trash" aria-hidden="true" id="enc-trash"></i>
+            </div>
+        
+            <div class="field">
+                <input type="text" id="enc-pass" placeholder="Enter encryption password">
+                <i class="fa fa-eye-slash" aria-hidden="true" id="enc-eye"></i>
+            </div>
+        
+            <div class="field">
+                <button id="enc-btn">Encrypt</button>
+            </div>
+        </div>
+        
+        <!-- <hr><br> -->
+        
+        <div class="decryptor">
+            <div class="field">
+                <input type="text" id="dec-text" placeholder="Enter code to decrypt">
+                <i class="fa fa-files-o" aria-hidden="true" id="dec-copy"></i>
+                <i class="fa fa-trash" aria-hidden="true" id="dec-trash"></i>
+            </div>
+
+            <div class="field">
+                <input type="text" id="dec-pass" placeholder="Enter decryption password">
+                <i class="fa fa-eye-slash" aria-hidden="true" id="dec-eye"></i>
+            </div>
+
+            <div class="field">
+                <button id="dec-btn">Decrypt</button>
+            </div>
+
+            <div class="tilt-switch">
+                <p>Enable Tilt Effect<br><span> (Reload page to disable)</span></p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- Importing the tilt.js for decorative purpose. -->
+    <script type="text/javascript" src="vanilla-tilt.js"></script>
+
+    <script type="text/javascript">
+
+        // Gyroscope tilt switch. Enable and disable tilt effect
+
+        const tiltDiv = document.querySelector(".tilt-switch");
+        const tiltText = document.querySelector(".tilt-switch p");
+
+        tiltText.onclick = () => {
+
+            // Once enabled, reload page is the only way to disable the tilt effect.
+            tiltDiv.parentNode.removeChild(tiltDiv);
+
+            VanillaTilt.init(document.querySelector(".wrapper"), {
+                max: 15,
+                speed: 300,
+                glare: true,
+                "max-glare": 0.2
+            });
+        }
+    </script>
+
+</body>
+</html>
